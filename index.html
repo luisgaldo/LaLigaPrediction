@@ -12,7 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<meta charset="utf-8" /> 
 		<script src="js/jquery-1.10.2.min.js"></script>
-		<script src="js/consultas/contratos.js"></script>
+		<script src="js/consultas/teamChoose.js"></script>
 		<title>La Liga Prediction</title>
 	</head>
 	<body>
@@ -20,22 +20,21 @@
 			<div class="container">
 				<h1>La Liga Prediction</h1>
 				<h4> Welcome to La Liga Prediction! We will help you make the right bets! </h4>
+				<div class="row">
 					<h2>Choose Home Team!</h2>
-				<div class="row">
-					<div class="col-xs-2">
-						<select name="homeTeam" id="homeTeam" class="form-control">
-						</select>
+					<div class="col-10">
+						<div id="homeTeamChoose"></div>
+					</div>
+					<div id="awayTeamChoose"></div>
 				</div>
-				<h2>Choose Away Team!</h2>
 				<div class="row">
-					<div class="col-xs-2">
-						<select name="awayTeam" id="awayTeam" class="form-control">
-						</select>
+					<div id="homeTeamDescription"></div>
+					<div id="awayTeamDescription"></div>
 				</div>
-					<script>
-						//homeTeam();
-					</script>
-			</div>
+				
 		</div>
 	</body>
+	<script>
+		homeTeam();
+	</script>
 </html>
