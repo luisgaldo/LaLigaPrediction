@@ -195,7 +195,7 @@
 
 <rdf:Description rdf:about="http://www.laligaprediction.com/Team_Atletico_de_Madrid">
 	<rdf:type rdf:resource="http://www.laligaprediction.com/Team"/>
-	<la:hasLink rdf:resource="http://dbpedia.org/resource/Atl%C3%A9tico_Madrid"/>
+	<la:hasLink rdf:resource="http://dbpedia.org/resource/Atletico_Madrid"/>
 	<la:hasName>Atletico de Madrid</la:hasName>
 	<la:hasStadium rdf:resource="http://www.laligaprediction.com/Stadium_Vicente_Calderon"/>
 </rdf:Description>
@@ -1018,7 +1018,7 @@
 
 <rdf:Description rdf:about="http://www.laligaprediction.com/Team_Malaga">
 	<rdf:type rdf:resource="http://www.laligaprediction.com/Team"/>
-	<la:hasLink rdf:resource="http://dbpedia.org/resource/M%C3%A1laga_CF"/>
+	<la:hasLink rdf:resource="http://dbpedia.org/resource/Malaga_CF"/>
 	<la:hasName>Malaga</la:hasName>
 	<la:hasStadium rdf:resource="http://www.laligaprediction.com/Stadium_La_Rosaleda"/>
 </rdf:Description>
@@ -1186,7 +1186,7 @@
 
 <rdf:Description rdf:about="http://www.laligaprediction.com/Team_Deportivo_de_la_Coruña">
 	<rdf:type rdf:resource="http://www.laligaprediction.com/Team"/>
-	<la:hasLink rdf:resource="http://dbpedia.org/resource/Deportivo_de_La_Coru%C3%B1a"/>
+	<la:hasLink rdf:resource="http://dbpedia.org/resource/Deportivo_de_La_Coruna"/>
 	<la:hasName>Deportivo de la Coruña</la:hasName>
 	<la:hasStadium rdf:resource="http://www.laligaprediction.com/Stadium_Riazor"/>
 </rdf:Description>
@@ -1194,7 +1194,7 @@
 <rdf:Description rdf:about="http://www.laligaprediction.com/City_Coruña">
 	<rdf:type rdf:resource="http://www.laligaprediction.com/City"/>
 	<la:hasName>Coruña</la:hasName>
-	<la:hasLink rdf:resource="http://dbpedia.org/resource/A_Coru%C3%B1a"/>
+	<la:hasLink rdf:resource="http://dbpedia.org/resource/A_Coruna"/>
 </rdf:Description>
 
 <rdf:Description rdf:about="http://www.laligaprediction.com/Stadium_Jose_Zorrilla">
@@ -1242,7 +1242,7 @@
 
 <rdf:Description rdf:about="http://www.laligaprediction.com/Team_Valladolid">
 	<rdf:type rdf:resource="http://www.laligaprediction.com/Team"/>
-	<la:hasLink rdf:resource="http://es.dbpedia.org/page/Real_Valladolid_Club_de_F%C3%BAtbol"/>
+	<la:hasLink rdf:resource="http://es.dbpedia.org/page/Real_Valladolid_Club_de_Futbol"/>
 	<la:hasName>Valladolid</la:hasName>
 	<la:hasStadium rdf:resource="http://www.laligaprediction.com/Stadium_Jose_Zorrilla"/>
 </rdf:Description>
@@ -1298,7 +1298,7 @@
 
 <rdf:Description rdf:about="http://www.laligaprediction.com/Team_Almeria">
 	<rdf:type rdf:resource="http://www.laligaprediction.com/Team"/>
-	<la:hasLink rdf:resource="http://dbpedia.org/resource/UD_Almer%C3%ADa"/>
+	<la:hasLink rdf:resource="http://dbpedia.org/resource/UD_Almeria"/>
 	<la:hasName>Almeria</la:hasName>
 	<la:hasStadium rdf:resource="http://www.laligaprediction.com/Stadium_Juegos_Mediterraneos"/>
 </rdf:Description>
@@ -1454,7 +1454,7 @@
 
 <rdf:Description rdf:about="http://www.laligaprediction.com/Team_Cordoba">
 	<rdf:type rdf:resource="http://www.laligaprediction.com/Team"/>
-	<la:hasLink rdf:resource="http://dbpedia.org/resource/C%C3%B3rdoba_CF"/>
+	<la:hasLink rdf:resource="http://dbpedia.org/resource/Cordoba_CF"/>
 	<la:hasName>Cordoba</la:hasName>
 	<la:hasStadium rdf:resource="http://www.laligaprediction.com/Stadium_Arcangel"/>
 </rdf:Description>
@@ -1604,7 +1604,7 @@
 
 <rdf:Description rdf:about="http://www.laligaprediction.com/Team_Sporting_de_Gijon">
 	<rdf:type rdf:resource="http://www.laligaprediction.com/Team"/>
-	<la:hasLink rdf:resource="http://dbpedia.org/resource/Sporting_de_Gij%C3%B3n"/>
+	<la:hasLink rdf:resource="http://dbpedia.org/resource/Sporting_de_Gijon"/>
 	<la:hasName>Sporting de Gijon</la:hasName>
 	<la:hasStadium rdf:resource="http://www.laligaprediction.com/Stadium_El_Molinon"/>
 </rdf:Description>
