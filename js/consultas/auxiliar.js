@@ -1,7 +1,9 @@
 //Se realiza la consulta SPARQL
 var homeTeam;
 var awayTeam;
-
+var specialCondition=0;
+var indicator = 0;
+var tablaEspecial = '';
 function homeTeam() {
 var SPARQL_ENDPOINT = 'http://localhost:3030/myDataset/query';
 var query ='PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \
@@ -147,6 +149,8 @@ function typeOfAlgorithm(analyze){
 function prediction(home,away) {
 document.getElementById("resultado").innerHTML = "";
 document.getElementById("resultado1").innerHTML = "";
+document.getElementById("tablaRes1").innerHTML = "";
+document.getElementById("tablaRes2").innerHTML = "";
 var SPARQL_ENDPOINT = 'http://localhost:3030/myDataset/query';
 var query ='PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \
 prefix la:<http://www.laligaprediction.com/> \
@@ -228,16 +232,22 @@ $.getJSON(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=app
 function groupComparison(home,away) {
 document.getElementById("resultado").innerHTML = "";
 document.getElementById("resultado1").innerHTML = "";
+document.getElementById("tablaRes1").innerHTML = "";
+document.getElementById("tablaRes2").innerHTML = "";
 $.ajaxSetup({
     async: false
 });
 	groupComparisonTeam(home,0);
 	groupComparisonTeam(away,1);
+
 $.ajaxSetup({
     async: true
 });
 }
 function groupComparisonTeam(team,type){
+	var tabla2 = '';
+tablaEspecial='<table name="prueba" style="width:50%">';
+indicator = 0;
 var kind = 'la:hasHomeTeam';
 var kind1 = 'la:hasHP';
 var kind2 = 'la:hasHG';
@@ -292,9 +302,15 @@ $.getJSON(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=app
 				.success(function(data) {
 					//console.log(data)
 					console.log("Número de partidos")
-					nameTeam = data.results.bindings[0].teamName.value ;
-					numberOfMatches = data.results.bindings[0].numberMatches.value;
+					if(data.results.bindings[0].numberMatches.value==0)
+						specialCondition=1;
+					else {
+						specialCondition=0;
+						nameTeam = data.results.bindings[0].teamName.value ;
+						numberOfMatches = data.results.bindings[0].numberMatches.value;
+					}
 			});
+			if(specialCondition==0){
 			for( j = 0;j<3;j++){
 				var condition = 0;
 				var res = 'loses';
@@ -357,21 +373,38 @@ $.getJSON(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=app
 					numbersOfGoalsReceived = data.results.bindings[0].goalsReceived.value;
 			});
 			puntosTotales = parseInt(numberOfWins*3) + parseInt(numberOfTies);
-			tabla=nameTeam+'\t'+seasonName+'\t'+numberOfMatches+'\t'+numberOfWins+'\t'+numberOfTies+'\t'+numberOfLoses+'\t'+puntosTotales+'\t'+numbersOfGoalsScored+'\t'+numbersOfGoalsReceived+'\n';
-		if(type == 0)
-			document.getElementById("resultado").innerHTML += tabla;
-		else
-			document.getElementById("resultado1").innerHTML += tabla;
+			
+			
+			if(indicator==0){
+				tabla1 ='<tr><th>'+nameTeam+'</th></tr>';
+			}
+			tabla2+='<tr><th>Season: '+seasonName+'</th></tr><tr><td>Number of matches: '+numberOfMatches+'</td></tr><tr><td>Number of wins: '+numberOfWins+'</td></tr><tr><td>Number of ties: '+numberOfTies+'</td></tr><tr><td>Number of Loses: '+numberOfLoses+'</td></tr><tr><td>Total points: '+puntosTotales+'</td></tr><tr><td>Number of goals scored: '+numbersOfGoalsScored+'</td></tr><tr><td>Number of goals Received: '+numbersOfGoalsReceived+'</td></tr>';
+			indicator =1;
+			console.log(tabla1);
+
+		
+			}
 		}
+		tabla2+='</table>';
+		if(type == 0)
+			document.getElementById("tablaRes1").innerHTML = tablaEspecial + tabla1 + tabla2;
+		else
+			document.getElementById("tablaRes2").innerHTML = tablaEspecial + tabla1 + tabla2;
 		
 });
 }
 
 function invidualComparison(home,away){
+	$.ajaxSetup({
+    async: false
+});
 document.getElementById("resultado").innerHTML = "";
 document.getElementById("resultado1").innerHTML = "";
+document.getElementById("tablaRes1").innerHTML = "";
+document.getElementById("tablaRes2").innerHTML = "";
 var homeTeamName = '';
 var awayTeamName = '';
+var matches= 0;
 var homeGoals = 0;
 var awayGoals = 0;
 var homeShots = 0;
@@ -449,6 +482,7 @@ $.getJSON(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=app
 	.success(function(data) {
 		console.log(data)
 		var feature = data.results.bindings[0];
+		matches = feature.Matches.value;
 		homeTeamName = feature.homeTeam.value;
 		awayTeamName = feature.awayTeam.value;
 		homeGoals = feature.Goals_Scored_ht.value;
@@ -466,9 +500,39 @@ $.getJSON(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=app
 		homeRed = feature.Avg_Red_Cards_ht.value;
 		awayRed = feature.Avg_Red_Cards_at.value;
 		console.log(homeTeamName);
-		tabla=homeTeamName+'\t'+homeGoals+'\t'+homeShots+'\t'+homeShotsTarget+'\t'+homeCorners+'\t'+homeFouls+'\t'+homeYellow+'\t'+homeRed+'\n';
-		tabla+=awayTeamName+'\t'+awayGoals+'\t'+awayShots+'\t'+awayShotsTarget+'\t'+awayCorners+'\t'+awayFouls+'\t'+awayYellow+'\t'+awayRed+'\n';
+		tabla='<table style="width:100%"><tr><th>'+homeTeamName+'</th><th>Last '+matches+' matches</th><th>'+awayTeamName+'</th></tr><tr><td>'+homeGoals+'</td><th>Total goals</th><td>'+awayGoals+'</td></tr><tr><td>'+homeShots+'</td><th>Average Shots</th><td>'+awayShots+'</td></tr><tr><td>'+homeCorners+'</td><th>Average Corners</th><td>'+awayCorners+'</td></tr><tr><td>'+homeFouls+'</td><th>Average Fouls</th><td>'+awayFouls+'</td></tr><tr><td>'+homeYellow+'</td><th>Average Yellow Cards</th><td>'+awayYellow+'</td></tr><tr><td>'+homeRed+'</td><th>Average Red Cards</th><td>'+awayRed+'</td></tr></table></br></br>';
 		document.getElementById("resultado").innerHTML = tabla;
 });
+var SPARQL_ENDPOINT = 'http://localhost:3030/myDataset/query';
+var query ='prefix la:<http://www.laligaprediction.com/> \
+select ?Season ?home_Team ?home_Goals ?away_Goals ?away_Team \
+where {  \
+?match la:hasHomeTeam <'+home+'> . \
+<'+home+'> la:hasName ?home_Team . \
+?match la:belongsToSeason ?sseason . \
+?sseason la:hasName ?Season . \
+?match la:hasAwayTeam <'+away+'> . \
+<'+away+'> la:hasName ?away_Team . \
+?match la:hasStatistics ?Stats . \
+?Stats la:hasHG ?home_Goals . \
+?Stats la:hasAG ?away_Goals . \
+} \
+ORDER BY ?Season';
 
+//Se almacena en data toda la información devuelta en la consulta
+$.getJSON(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=application%2Fsparql-results%2Bjson&timeout=100')
+    .success(function(data) {
+		var feature;
+		console.log(data)
+		tabla ='<table style="width:100%">';
+		for ( i = 0; i < data.results.bindings.length; i++) {
+			feature = data.results.bindings[i];
+			tabla += '<tr><th>'+feature.Season.value+'</th><td>'+feature.home_Team.value+'</td><td>'+feature.home_Goals.value+'</td><td>'+feature.away_Goals.value+'</td><td>'+feature.away_Team.value+'</td><th>        </th></tr>';
+		}
+		tabla += '</table></br></br>';
+		document.getElementById("resultado1").innerHTML = tabla;
+});
+$.ajaxSetup({
+    async: true
+});
 }
