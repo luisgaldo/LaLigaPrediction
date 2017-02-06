@@ -500,7 +500,7 @@ $.getJSON(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=app
 		homeRed = feature.Avg_Red_Cards_ht.value;
 		awayRed = feature.Avg_Red_Cards_at.value;
 		console.log(homeTeamName);
-		tabla='<table style="width:100%"><tr><th>'+homeTeamName+'</th><th>Last '+matches+' matches</th><th>'+awayTeamName+'</th></tr><tr><td>'+homeGoals+'</td><th>Total goals</th><td>'+awayGoals+'</td></tr><tr><td>'+homeShots+'</td><th>Average Shots</th><td>'+awayShots+'</td></tr><tr><td>'+homeCorners+'</td><th>Average Corners</th><td>'+awayCorners+'</td></tr><tr><td>'+homeFouls+'</td><th>Average Fouls</th><td>'+awayFouls+'</td></tr><tr><td>'+homeYellow+'</td><th>Average Yellow Cards</th><td>'+awayYellow+'</td></tr><tr><td>'+homeRed+'</td><th>Average Red Cards</th><td>'+awayRed+'</td></tr></table></br></br>';
+		tabla='<table style="width:100%"><tr><th>'+homeTeamName+'</th><th>Last '+matches+' matches</th><th>'+awayTeamName+'</th></tr><tr><td>'+homeGoals+'</td><th>Total goals</th><td>'+awayGoals+'</td></tr><tr><td>'+homeShots+'</td><th>Average Shots</th><td>'+awayShots+'</td></tr><tr><td>'+homeShotsTarget+'</td><th>Average Shots on Target</th><td>'+awayShotsTarget+'</td></tr><tr><td>'+homeCorners+'</td><th>Average Corners</th><td>'+awayCorners+'</td></tr><tr><td>'+homeFouls+'</td><th>Average Fouls</th><td>'+awayFouls+'</td></tr><tr><td>'+homeYellow+'</td><th>Average Yellow Cards</th><td>'+awayYellow+'</td></tr><tr><td>'+homeRed+'</td><th>Average Red Cards</th><td>'+awayRed+'</td></tr></table></br></br>';
 		document.getElementById("resultado").innerHTML = tabla;
 });
 var SPARQL_ENDPOINT = 'http://localhost:3030/myDataset/query';
